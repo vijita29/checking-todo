@@ -3,8 +3,9 @@ from flask import render_template
 from flask import redirect
 import urllib.parse 
 from flask_sqlalchemy import SQLAlchemy
+import os
 
-params = urllib.parse.quote_plus("DRIVER={SQL Server};Server=tcp:db2-2387.database.windows.net,1433;Database=crud;Uid=dbadmin;Pwd=inti@lDrift#1;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;")
+params = urllib.parse.quote_plus(os.environ['connect_params'])
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = "mssql+pyodbc:///?odbc_connect=%s" % params
